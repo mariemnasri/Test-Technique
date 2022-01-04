@@ -13,17 +13,17 @@
 <h2 *ngIf="errorResponse" style="color: red">
   Api Error: {{ errorResponse.message }}
   <br />
-  <p>reload the page</p>
+  <p>Reload the page</p>
 </h2>
 <table
   *ngIf="employeesResponse !== [] && employeesResponse.status == 'success'"
 >
   <thead>
     <tr>
-      <th (click)="sort('id')">id 🔝</th>
-      <th (click)="sort('employee_name')">employee_name 🔝</th>
-      <th (click)="sort('employee_salary')">employee_salary 🔝</th>
-      <th (click)="sort('employee_age')">employee_age 🔝</th>
+      <th (click)="sort('id')">Id 🔝</th>
+      <th (click)="sort('employee_name')">Employee_name 🔝</th>
+      <th (click)="sort('employee_salary')">Employee_salary 🔝</th>
+      <th (click)="sort('employee_age')">Employee_age 🔝</th>
     </tr>
   </thead>
   <tbody>
@@ -42,30 +42,30 @@
     </tr>
   </tbody>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  <label for="select"> Number of rows</label>
-  <select [value]="numberOfElements" (change)="onChangePagination($event)">
+  <label for="select" class="row-label"> Number of rows</label>
+  <select [value]="numberOfElements" (change)="onChangePagination($event)" class="row-select">
     <option value="5">5</option>
     <option value="10">10</option>
     <option value="15">15</option>
     <option value="20">20</option>
   </select>
-  <button class="btn btn-primary" (click)="showFormular()">Add Row</button>
+  <button class="btn primary-btn" (click)="showFormular()">Add Row</button>
 </table>
 <form #addEmployeeForm="ngForm" (ngSubmit)="onValidate(addEmployeeForm)">
   <table *ngIf="showForm">
     <thead>
       <tr>
-        <th>employee_name</th>
-        <th>employee_salary</th>
-        <th>employee_age</th>
+        <th>Employee_name</th>
+        <th>Employee_salary</th>
+        <th>Employee_age</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><input name="employee_name" type="text" ngModel required /></td>
-        <td><input name="employee_salary" type="number" ngModel required /></td>
-        <td><input name="employee_age" type="number" ngModel required /></td>
-        <td><button type="submit">Validate</button></td>
+        <td><input class="input" name="employee_name" type="text" ngModel required /></td>
+        <td><input class="input" name="employee_salary" type="number" ngModel required /></td>
+        <td><input class="input" name="employee_age" type="number" ngModel required /></td>
+        <td><button type="submit" class="primary-btn" >Validate</button></td>
       </tr>
     </tbody>
   </table>

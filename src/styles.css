@@ -1,4 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+    height: 100%;
+    background-color: rgb(233, 220, 203);}
+body { margin: 0; font-family:Verdana, Geneva, Tahoma, sans-serif}
+/*
+@media  screen and (max-width:474px) {
+    html,body{
+        display: flex;
+        position: fixed;
+        z-index:999;
+        width: 73vw;
+        height: 100%;
+        width: 50%;
+        float: none;
+        transition: .25s ease-in-out;
+        left: -50vw;
+    }
+}*/
+
