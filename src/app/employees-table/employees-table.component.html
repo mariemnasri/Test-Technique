@@ -1,0 +1,73 @@
+<div class="table-container">
+
+  <h1>Employee Table</h1>
+<nav class="navbar">
+  <input
+    class="form-control"
+    type="text"
+    [(ngModel)]="name"
+    (ngModelChange)="Search()"
+    placeholder="Enter Employee's Name"
+  />
+</nav>
+<h2 *ngIf="errorResponse" style="color: red">
+  Api Error: {{ errorResponse.message }}
+  <br />
+  <p>reload the page</p>
+</h2>
+<table
+  *ngIf="employeesResponse !== [] && employeesResponse.status == 'success'"
+>
+  <thead>
+    <tr>
+      <th (click)="sort('id')">id 🔝</th>
+      <th (click)="sort('employee_name')">employee_name 🔝</th>
+      <th (click)="sort('employee_salary')">employee_salary 🔝</th>
+      <th (click)="sort('employee_age')">employee_age 🔝</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let employee of employeesResponse.data
+          | orderBy: key:reverse
+          | paginate: { itemsPerPage: numberOfElements, currentPage: p }
+      "
+    >
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.employee_name }}</td>
+      <td>{{ employee.employee_salary }}</td>
+      <td>{{ employee.employee_age }}</td>
+      <td><button (click)="deleteEmployee(employee)" class="delete-btn">Delete</button></td>
+    </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  <label for="select"> Number of rows</label>
+  <select [value]="numberOfElements" (change)="onChangePagination($event)">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="15">15</option>
+    <option value="20">20</option>
+  </select>
+  <button class="btn btn-primary" (click)="showFormular()">Add Row</button>
+</table>
+<form #addEmployeeForm="ngForm" (ngSubmit)="onValidate(addEmployeeForm)">
+  <table *ngIf="showForm">
+    <thead>
+      <tr>
+        <th>employee_name</th>
+        <th>employee_salary</th>
+        <th>employee_age</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><input name="employee_name" type="text" ngModel required /></td>
+        <td><input name="employee_salary" type="number" ngModel required /></td>
+        <td><input name="employee_age" type="number" ngModel required /></td>
+        <td><button type="submit">Validate</button></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>
